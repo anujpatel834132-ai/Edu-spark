@@ -1,0 +1,258 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduSpark | Learn Smarter</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f8ff;
+  color: #172554;
+}
+
+header {
+  background: white;
+  padding: 18px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 12px #00000008;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: bold;
+  color: #2563eb;
+}
+
+.logo span {
+  color: #f59e0b;
+}
+
+.hero {
+  padding: 55px 7%;
+  text-align: center;
+  background: linear-gradient(135deg, #dbeafe, #eff6ff);
+}
+
+.hero h1 {
+  font-size: 36px;
+  margin-bottom: 15px;
+}
+
+.hero h1 span {
+  color: #2563eb;
+}
+
+.hero p {
+  color: #64748b;
+  line-height: 1.7;
+  margin-bottom: 25px;
+}
+
+.search {
+  width: 100%;
+  max-width: 500px;
+  padding: 15px;
+  border: 1px solid #dbeafe;
+  border-radius: 12px;
+  font-size: 16px;
+  outline: none;
+}
+
+section {
+  padding: 35px 7%;
+}
+
+.section-title {
+  font-size: 24px;
+  margin-bottom: 22px;
+}
+
+.subjects {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.card {
+  background: white;
+  padding: 22px;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px #00000006;
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+.card .icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.card h3 {
+  margin-bottom: 8px;
+}
+
+.card p {
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+.quiz {
+  background: #1d4ed8;
+  color: white;
+  border-radius: 20px;
+  padding: 28px;
+}
+
+.quiz p {
+  margin: 12px 0 20px;
+  line-height: 1.6;
+  color: #dbeafe;
+}
+
+.btn {
+  background: #fbbf24;
+  color: #172554;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+footer {
+  background: #172554;
+  color: #cbd5e1;
+  text-align: center;
+  padding: 25px;
+  font-size: 14px;
+}
+
+@media (min-width: 700px) {
+  .subjects {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .hero h1 {
+    font-size: 48px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">Edu<span>Spark</span></div>
+  <div>📚 Class 9</div>
+</header>
+
+<div class="hero">
+  <h1>Learn Smarter with <span>EduSpark</span></h1>
+  <p>
+    Your learning journey starts here.<br>
+    Notes, quizzes and study materials — all in one place.
+  </p>
+
+  <input
+    class="search"
+    id="search"
+    type="search"
+    placeholder="Search your subject..."
+  >
+</div>
+
+<section>
+  <h2 class="section-title">Explore Subjects 📖</h2>
+
+  <div class="subjects" id="subjects">
+
+    <div class="card" data-name="mathematics maths">
+      <div class="icon">🔢</div>
+      <h3>Mathematics</h3>
+      <p>Chapter-wise notes and practice questions.</p>
+    </div>
+
+    <div class="card" data-name="science">
+      <div class="icon">🔬</div>
+      <h3>Science</h3>
+      <p>Understand concepts with simple explanations.</p>
+    </div>
+
+    <div class="card" data-name="social science history geography">
+      <div class="icon">🌍</div>
+      <h3>Social Science</h3>
+      <p>History, Geography, Civics and Economics.</p>
+    </div>
+
+    <div class="card" data-name="english">
+      <div class="icon">📝</div>
+      <h3>English</h3>
+      <p>Literature, grammar and language learning.</p>
+    </div>
+
+    <div class="card" data-name="hindi">
+      <div class="icon">📚</div>
+      <h3>Hindi</h3>
+      <p>Hindi literature, grammar and notes.</p>
+    </div>
+
+    <div class="card" data-name="quiz mcq test">
+      <div class="icon">🎯</div>
+      <h3>MCQ Practice</h3>
+      <p>Test your knowledge and improve your skills.</p>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="quiz">
+    <h2>Ready to Test Yourself?</h2>
+    <p>Practice questions and challenge your knowledge.</p>
+    <button class="btn" onclick="startQuiz()">Start Quiz →</button>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 EduSpark. Learn today, lead tomorrow.</p>
+  <p style="margin-top:8px">Made for learners ❤️</p>
+</footer>
+
+<script>
+const search = document.getElementById("search");
+const cards = document.querySelectorAll(".card");
+
+search.addEventListener("input", function () {
+  const query = this.value.toLowerCase();
+
+  cards.forEach(function (card) {
+    const name = card.dataset.name.toLowerCase();
+    card.style.display = name.includes(query)
+      ? "block"
+      : "none";
+  });
+});
+
+function startQuiz() {
+  alert("Welcome to EduSpark Quiz! More questions coming soon.");
+}
+</script>
+
+</body>
+    </html>
+    
